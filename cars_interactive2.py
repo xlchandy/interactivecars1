@@ -28,16 +28,21 @@ CarsbyYear=cars[['Year']]
 maxacceleration=cars['Acceleration'].max()
 minacceleration=cars['Acceleration'].min()
 
+
 st.subheader("Cars Data")
 chart1=alt.Chart(cars).mark_point().encode(
     x='Miles_Per_Gallon:Q',
     y='Horsepower:Q',
     color='Cylinders'
-).interactive()
+).configure_legend(
+                   titleFontSize=14,
+                   labelFontSize=10
+                   ).interactive()
+
 
 st.altair_chart(chart1,use_container_width=True)
 
-b=st.sidebar.multiselect('Pick your Country of Origin from this List',sorted(CarsbyOrigin['Origin'].unique()))
+b=st.sidebar.multiselect('Pick one or more Country of manufacturing',sorted(CarsbyOrigin['Origin'].unique()))
 
 if b==[] :
     st.subheader('Waiting for a Country to be Picked...')
@@ -49,13 +54,17 @@ else:
                                           color='Origin'
                                           ).transform_filter (
                                                              alt.FieldOneOfPredicate(field='Origin',oneOf=b)                                                                    
-                                                             ).interactive()
+                                                             ).configure_legend(
+                                                                                titleFontSize=14,
+                                                                                labelFontSize=10
+                                                                                ) .interactive()
+
     st.altair_chart(chart2,use_container_width=True)
 
-c=st.sidebar.multiselect('Pick the year of manufacturing from this List',sorted(CarsbyYear['Year'].unique()))
+c=st.sidebar.multiselect('Pick one or more vintage year from this List',sorted(CarsbyYear['Year'].unique()))
 
 if c==[]:
-    st.subheader('Waiting for Vintage Year to be Picked..')
+    st.subheader('Waiting for a Vintage Year to be Picked..')
 else:
     st.subheader('By Vintage Year')
     chart3=alt.Chart(cars).mark_point().encode(
@@ -64,7 +73,11 @@ else:
                                           color='Year:O'
                                           ).transform_filter (
                                                               alt.FieldOneOfPredicate(field='Year',oneOf=c)                                                                     
-                                                             ).interactive()
+                                                             ).configure_legend(
+                                                                                titleFontSize=14,
+                                                                                labelFontSize=10
+                                                                                ) .interactive()
+
 
     st.altair_chart(chart3,use_container_width=True)
 
@@ -76,6 +89,9 @@ chart4=alt.Chart(cars).mark_point().encode(
                                           color='Acceleration'
                                           ).transform_filter (
                                                               alt.FieldGTPredicate(field='Acceleration',gt=d)                                                                      
-                                                             ).interactive()
+                                                             ).configure_legend(
+                                                                                titleFontSize=14,
+                                                                                labelFontSize=10
+                                                                                ) .interactive()
 
 st.altair_chart(chart4,use_container_width=True)
