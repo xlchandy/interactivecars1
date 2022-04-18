@@ -42,7 +42,7 @@ chart1=alt.Chart(cars).mark_point().encode(
 
 st.altair_chart(chart1,use_container_width=True)
 
-b=st.sidebar.multiselect('Pick one or more Country of manufacturing',sorted(CarsbyOrigin['Origin'].unique()))
+b=st.sidebar.multiselect('Pick one or more Country of Manufacturing',sorted(CarsbyOrigin['Origin'].unique()))
 
 if b==[] :
     st.subheader('Waiting for a Country to be Picked...')
@@ -61,7 +61,7 @@ else:
 
     st.altair_chart(chart2,use_container_width=True)
 
-c=st.sidebar.multiselect('Pick one or more vintage year from this List',sorted(CarsbyYear['Year'].unique()))
+c=st.sidebar.multiselect('Pick one or more Vintage Year from this List',sorted(CarsbyYear['Year'].unique()))
 
 if c==[]:
     st.subheader('Waiting for a Vintage Year to be Picked..')
