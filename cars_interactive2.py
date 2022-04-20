@@ -28,6 +28,14 @@ CarsbyYear=cars[['Year']]
 maxacceleration=cars['Acceleration'].max()
 minacceleration=cars['Acceleration'].min()
 
+st.set_page_config(
+                     layout="wide",
+                     initial_sidebar_state="expanded",
+                     menu_items={
+                                 'About': "# This is an *extremely* cool app!"
+                                }
+                 )
+
 
 st.subheader("Cars Data")
 chart1=alt.Chart(cars).mark_point().encode(
